@@ -1,0 +1,2 @@
+Para compilar: g++ tp1ej3.cpp -Wall -g -o ejecutable
+Para ejecutar: gdb ejecutable

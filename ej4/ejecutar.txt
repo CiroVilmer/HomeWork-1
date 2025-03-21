@@ -1,0 +1,7 @@
+a y b)
+Para compilar: g++ tp1ej4.cpp -Wall -g -o ejecutable
+Para ejecutar: gdb ejecutable
+
+c)
+Para compilar: g++ tp1ej4c.cpp -Wall -g -o ejecutable
+Para ejecutar: gdb ejecutable
