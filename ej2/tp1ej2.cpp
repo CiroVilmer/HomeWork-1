@@ -12,6 +12,7 @@ using namespace std;
            Además, cree las funciones test_logMessage2() y test_logMessage3() que ejecutan logMessage con 4 mensajes de error y 4 mensajes de acceso, respectivamente, para comprobar su funcionalidad
        */
 
+void writeToFile(const string& message);
 void logMessage(string mensaje, int nivel);
 void logMessage(string mensaje_de_error, string archivo, int linea_de_código);
 void logMessage(string mensaje_de_acceso, string nombre_de_usuario);
@@ -29,6 +30,17 @@ int main(){
 
     
     return 0;
+}
+
+/* Escribe un mensaje "message" en el archivo log.txt. */
+void writeToFile(const string& message) {
+    ofstream logFile("log.txt", ios::app);
+    if (logFile.is_open()) {
+        logFile << message << endl;
+        logFile.close();
+    } else {
+        cerr << "No se pudo abrir el archivo de log." << endl;
+    }
 }
 
 /* Imprime un mensaje "mensaje" en la consola con el nivel de severidad correspondiente.
@@ -67,8 +79,9 @@ void logMessage(string mensaje, int nivel){
             break;
     }
 
-    cout << "[" << severidad << "] <" << mensaje << ">" << endl;
-}
+    string logEntry = "[" + severidad + "] <" + mensaje + ">";
+    cout << logEntry << endl;
+    writeToFile(logEntry);}
 
 /* Test que ejecuta log message con sus 7 severidades.*/
 void test_logMessage1(){
@@ -85,7 +98,9 @@ void test_logMessage1(){
 
 /* Imprime un mensaje de error "mensaje_de_error" en la consola con el archivo y la línea de código donde ocurrió el error. */
 void logMessage(string mensaje_de_error, string archivo, int linea_de_código){
-    cout << "[ERROR] <" << mensaje_de_error << "> en el archivo " << archivo << " en la línea " << linea_de_código << endl;
+    string logEntry = "[ERROR] <" + mensaje_de_error + "> en el archivo " + archivo + " en la línea " + to_string(linea_de_código);
+    cout << logEntry << endl;
+    writeToFile(logEntry);
 }
 
 /* Test que ejecuta logMessage con 4 mensajes de error. */
